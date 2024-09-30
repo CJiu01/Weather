@@ -16,15 +16,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
+            MainView()
+                .tabItem {
+                    Image(systemName: "location.fill")
+                }
+            
             LeftView()
                 .tabItem {
                     Image(systemName: "map")
                         .imageScale(.small)
                 }
-            MainView()
-                .tabItem {
-                    Image(systemName: "location.fill")
-                }
+            
             
             RightView()
                 .tabItem {
@@ -37,32 +39,41 @@ struct ContentView: View {
 
 struct MainView: View {
     var body: some View {
-        
-        ZStack(alignment: .top) {
-            LinearGradient(colors: [Color(red: 0.23, green: 0.33, blue: 0.52),
-                                    Color(red: 0.70, green: 0.53, blue: 0.58)],
-                                           startPoint: .top,
-                                           endPoint: .bottom)
-            .ignoresSafeArea()
+            ZStack(alignment: .top) {
+                LinearGradient(colors: [Color(red: 0.23, green: 0.33, blue: 0.52),
+                                        Color(red: 0.70, green: 0.53, blue: 0.58)],
+                               startPoint: .top,
+                               endPoint: .bottom)
+                .ignoresSafeArea()
+                
+                VStack {
+                    VStack(spacing: 5) {
+                        Text("Seongnam-si")
+                            .font(Font.system(size: 32))
+                            .foregroundColor(.white)
+                        
+                        Text("21°")
+                            .font(Font.system(size: 100))
+                            .fontWeight(.thin)
+                            .foregroundColor(.white)
+                        
+                        Text("Partly Cloudy")
+                            .foregroundColor(.white)
+                        
+                        Text("H:29° L:15°")
+                            .foregroundColor(.white)
+                        
+                        
+                    }.padding(.top, 10)
+                    
+                    HourlyForecastView()
+                        .padding(.top, 43)
+                    
+                }.padding(.horizontal, 20)
             
-            VStack(spacing: 5) {
-                Text("Seongnam-si")
-                    .font(Font.system(size: 32))
-                    .foregroundColor(.white)
-                
-                Text("21°")
-                    .font(Font.system(size: 100))
-                    .fontWeight(.thin)
-                    .foregroundColor(.white)
-                
-                Text("Partly Cloudy")
-                    .foregroundColor(.white)
-                
-                Text("H:29° L:15°")
-                    .foregroundColor(.white)
-            }.padding(.top, 10)
         }
     }
+        
 }
 
 
