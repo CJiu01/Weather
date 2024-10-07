@@ -11,7 +11,7 @@ struct ContentView: View {
     
     init() {
         UITabBar.appearance().unselectedItemTintColor = UIColor.white
-        UITabBar.appearance().backgroundColor = UIColor(red: 0.23, green: 0.33, blue: 0.52, alpha: 0.3)
+        UITabBar.appearance().backgroundColor = UIColor(red: 0.23, green: 0.33, blue: 0.52, alpha: 1)
     }
     
     var body: some View {
@@ -39,6 +39,7 @@ struct ContentView: View {
 
 struct MainView: View {
     var body: some View {
+        ScrollView {
             ZStack(alignment: .top) {
                 LinearGradient(colors: [Color(red: 0.23, green: 0.33, blue: 0.52),
                                         Color(red: 0.70, green: 0.53, blue: 0.58)],
@@ -47,31 +48,18 @@ struct MainView: View {
                 .ignoresSafeArea()
                 
                 VStack {
-                    VStack(spacing: 5) {
-                        Text("Seongnam-si")
-                            .font(Font.system(size: 32))
-                            .foregroundColor(.white)
-                        
-                        Text("21°")
-                            .font(Font.system(size: 100))
-                            .fontWeight(.thin)
-                            .foregroundColor(.white)
-                        
-                        Text("Partly Cloudy")
-                            .foregroundColor(.white)
-                        
-                        Text("H:29° L:15°")
-                            .foregroundColor(.white)
-                        
-                        
-                    }.padding(.top, 10)
+                    SummaryView()
+                        .padding(.top, 78)
                     
                     HourlyForecastView()
                         .padding(.top, 43)
                     
+                    DailyForecaseView()
+                    
                 }.padding(.horizontal, 20)
-            
+            }
         }
+        .ignoresSafeArea()
     }
         
 }
