@@ -41,12 +41,8 @@ struct MainView: View {
     var body: some View {
         ScrollView {
             ZStack(alignment: .top) {
-                LinearGradient(colors: [Color(red: 0.23, green: 0.33, blue: 0.52),
-                                        Color(red: 0.70, green: 0.53, blue: 0.58)],
-                               startPoint: .top,
-                               endPoint: .bottom)
-                .ignoresSafeArea()
                 
+                                
                 VStack {
                     SummaryView()
                         .padding(.top, 78)
@@ -59,7 +55,15 @@ struct MainView: View {
                 }.padding(.horizontal, 20)
             }
         }
-        .ignoresSafeArea()
+        .background {
+            LinearGradient(colors: [Color(red: 0.23, green: 0.33, blue: 0.52),
+                                    Color(red: 0.70, green: 0.53, blue: 0.58)],
+                           startPoint: .top,
+                           endPoint: .bottom)
+            .ignoresSafeArea()
+
+        }
+        
     }
         
 }
