@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HourlyForecastView: View {
+    
+    let weatherData: [HourlyWeatherModel]
+    
     var body: some View {
         VStack(alignment: .leading)  {
             Text("Cloudy conditions from 1AM-9AM, with showers expected at 9AM.")
@@ -21,16 +24,16 @@ struct HourlyForecastView: View {
             
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(0..<10) { hourlyWeatherItem in
+                    ForEach(weatherData, id: \.time) { data in
                         VStack {
-                            Text("Now")
+                            Text(data.time)
                                 .foregroundStyle(.white)
                                 .font(Font.system(size: 17, weight: .medium))
-                            Image(systemName: "cloud.rain.fill")
+                            Image(systemName: data.icon)
                                 .resizable()
                                 .frame(width: 30, height: 30)
                                 .padding(.vertical, 24)
-                            Text("90°F")
+                            Text("\(data.temperature)°")
                                 .foregroundStyle(.white)
                                 .font(Font.system(size: 22, weight: .medium))
                         }
@@ -53,5 +56,5 @@ struct VisualEffectView: UIViewRepresentable {
 }
 
 #Preview {
-    HourlyForecastView()
+    HourlyForecastView(weatherData: HourlyWeatherModel.sampleDate())
 }

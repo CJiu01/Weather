@@ -8,79 +8,46 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    init() {
-        UITabBar.appearance().unselectedItemTintColor = UIColor.white
-        UITabBar.appearance().backgroundColor = UIColor(red: 0.23, green: 0.33, blue: 0.52, alpha: 1)
-    }
-    
-    var body: some View {
-        TabView {
-            MainView()
-                .tabItem {
-                    Image(systemName: "location.fill")
-                }
-            
-            LeftView()
-                .tabItem {
-                    Image(systemName: "map")
-                        .imageScale(.small)
-                }
-            
-            
-            RightView()
-                .tabItem {
-                    Image(systemName: "list.bullet")
-                        .background(.white)
-                }
-        }.accentColor(.white)
-    }
-}
 
-struct MainView: View {
+    @State var selectedTab: TabItems = .currentLocation
+
     var body: some View {
-        ScrollView {
-            ZStack(alignment: .top) {
-                LinearGradient(colors: [Color(red: 0.23, green: 0.33, blue: 0.52),
-                                        Color(red: 0.70, green: 0.53, blue: 0.58)],
-                               startPoint: .top,
-                               endPoint: .bottom)
-                .ignoresSafeArea()
-                
-                VStack {
-                    SummaryView()
-                        .padding(.top, 78)
-                    
-                    HourlyForecastView()
-                        .padding(.top, 43)
-                    
-                    DailyForecaseView()
-                    
-                }.padding(.horizontal, 20)
-            }
-        }
-        .ignoresSafeArea()
-    }
         
-}
+            TabView(selection: $selectedTab) {
+                MapView()
+                    .tag(TabItems.map)
 
+                CurrentLocationView()
+                    .tag(TabItems.currentLocation)
 
-struct LeftView: View {
-    var body: some View {
-        VStack {
-            Text("Left View")
-        }
+                ListView()
+                    .tag(TabItems.list)
+
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        
+            .overlay(alignment: .bottom) {
+                CustomTabView(selectedTab: $selectedTab)
+                    .background(Color(red: 0.70, green: 0.53, blue: 0.58))
+                    
+            }
+
+        
+            .background {
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.23, green: 0.33, blue: 0.52),
+                        Color(red: 0.70, green: 0.53, blue: 0.58),
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
+
+            }
+
     }
 }
-
-struct RightView: View {
-    var body: some View {
-        VStack {
-            Text("Right View")
-        }
-    }
-}
-
 
 #Preview {
     ContentView()
