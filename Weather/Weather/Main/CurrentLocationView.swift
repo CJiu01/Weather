@@ -19,7 +19,7 @@ struct CurrentLocationView: View {
                     HourlyForecastView(weatherData: HourlyWeatherModel.sampleDate())
                         .padding(.top, 43)
                     
-                    DailyForecaseView()
+                    DailyForecastView(weatherData: DailyWeatherModel.mock())
                     
                 }.padding(.horizontal, 20)
             }
@@ -30,4 +30,5 @@ struct CurrentLocationView: View {
 
 #Preview {
     CurrentLocationView()
+        .background(Color.black)
 }

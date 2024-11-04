@@ -1,5 +1,5 @@
 //
-//  DailyForecaseView.swift
+//  DailyForecastView.swift
 //  Weather
 //
 //  Created by 최지우 on 10/7/24.
@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct DailyForecaseView: View {
+struct DailyForecastView: View {
+    
+    let weatherData: [DailyWeatherModel]
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -21,26 +24,26 @@ struct DailyForecaseView: View {
             }
             Divider()
             
-            ForEach(0..<9) { _ in
+            ForEach(weatherData, id: \.day) { data in
                 HStack {
-                    Text("Today")
+                    Text(data.day)
                         .foregroundStyle(.white)
                         .font(Font.system(size: 22, weight: .medium))
                     
                     Spacer()
                     
-                    Image(systemName: "sun.max.fill")
+                    Image(systemName: data.icon)
                         .foregroundStyle(.yellow)
                     
                     Spacer()
                         .frame(maxWidth: 15)
-                    Text("15°")
+                    Text("\(data.lowTemperature)°")
                         .foregroundStyle(.white.opacity(0.6))
                         .font(Font.system(size: 22, weight: .medium))
 
                     ProgressView(value: 0.3, total: 1)
                         
-                    Text("29°")
+                    Text("\(data.highTemperature)°")
                         .foregroundStyle(.white)
                         .font(Font.system(size: 22, weight: .medium))
                     
@@ -61,6 +64,6 @@ struct DailyForecaseView: View {
 }
 
 #Preview {
-    DailyForecaseView()
-        .background(.blue)
+    DailyForecastView(weatherData: DailyWeatherModel.mock())
+        .background(.black)
 }
