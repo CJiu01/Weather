@@ -32,3 +32,4 @@ struct CurrentLocationView: View {
     CurrentLocationView()
         .background(Color.black)
 }
+
