@@ -16,7 +16,7 @@ struct CurrentLocationView: View {
                     SummaryView()
                         .padding(.top, 78)
                     
-                    HourlyForecastView()
+                    HourlyForecastView(weatherData: HourlyWeatherModel.sampleDate())
                         .padding(.top, 43)
                     
                     DailyForecaseView()

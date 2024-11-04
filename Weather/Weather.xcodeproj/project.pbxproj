@@ -31,6 +31,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7B1E922C2CD8A48F00BBEFA9 /* Main */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Main; sourceTree = "<group>"; };
+		7B9248CF2CD8BA040041B726 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +64,7 @@
 		7B4B87D52C96DC4100EB4759 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				7B9248CF2CD8BA040041B726 /* Model */,
 				7B1E922C2CD8A48F00BBEFA9 /* Main */,
 				7B4B87D62C96DC4100EB4759 /* WeatherApp.swift */,
 				7B4B87D82C96DC4100EB4759 /* ContentView.swift */,
@@ -101,6 +103,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				7B1E922C2CD8A48F00BBEFA9 /* Main */,
+				7B9248CF2CD8BA040041B726 /* Model */,
 			);
 			name = Weather;
 			productName = Weather;
