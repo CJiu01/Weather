@@ -5,9 +5,11 @@
 //  Created by 최지우 on 9/15/24.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct ContentView: View {
+    let store: StoreOf<MainTemperatureFeature>
 
     @State var selectedTab: TabItems = .currentLocation
 
@@ -17,7 +19,7 @@ struct ContentView: View {
                 MapView()
                     .tag(TabItems.map)
 
-                CurrentLocationView()
+                CurrentLocationView(store: store)
                     .tag(TabItems.currentLocation)
 
                 ListView()
@@ -50,5 +52,9 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(
+        store: Store(initialState: MainTemperatureFeature.State()) {
+            MainTemperatureFeature()
+        }
+    )
 }
