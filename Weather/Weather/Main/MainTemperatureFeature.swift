@@ -10,10 +10,11 @@ import Foundation
 
 @Reducer
 struct MainTemperatureFeature {
-
+    
     @ObservableState
     struct State {
         // FIXME: 초기값을 지정하는 것이 맞나?
+        // 우선 _printChanges 메서드를 통해 리듀서의 상태 변화를 찍어보기 위해 초기값을 설정한다
         var currentTemperature: Int = 0
         var temperatureMax: Int = 0
         var temperatureMin: Int = 0
@@ -42,7 +43,7 @@ struct MainTemperatureFeature {
                     } catch {
                         print("Json decoding 실패 or 네트워크 오류: \(error)")
                     }
-               
+                    
                 }
             case let .currentTemperatureResponse(weatherResponse):
                 state.isLoading = false
@@ -66,17 +67,17 @@ struct MainTemperatureFeature {
 extension MainTemperatureFeature {
     func setRequestData() -> URLRequest {
         let urlString =
-            "https://api.tomorrow.io/v4/timelines?apikey=S0miM4A5Wc8cZAzw6roqiFkvJT7rwwKk"
+        "https://api.tomorrow.io/v4/timelines?apikey=S0miM4A5Wc8cZAzw6roqiFkvJT7rwwKk"
         guard let url = URL(string: urlString) else {
             return URLRequest(url: URL(string: "about:blank")!)
         }
-
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
-
+        
         let requestData: [String: Any] = [
             "location": "42.3478, -71.0466",
             "fields": [
